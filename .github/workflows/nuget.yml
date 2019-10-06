@@ -1,17 +1,17 @@
 name: nuget CI
-on: [push]
+on:
+  push:
+    tags: 
+      - v1.*
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@master
-    - name: prepare
-      run: for %%i in (*.*) do if not "%%i"=="CollectionManagerDll" rd /q /s "%%i"
     - name: build
-      run: dotnet build
+      run: dotnet build -c Release
     - name: Setup Nuget.exe
       uses: warrenbuckley/Setup-Nuget@v1
-
     - name: Nuget Push
-      run: nuget push *.nupkg
+      run: nuget push bin\Release\*.nupkg ${{ secrets.NUGET_API_KEY }} -Source https://api.nuget.org/v3/index.json
