@@ -1,0 +1,17 @@
+name: nuget CI
+on: [push]
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: prepare
+      run: for %%i in (*.*) do if not "%%i"=="CollectionManagerDll" rd /q /s "%%i"
+    - name: build
+      run: dotnet build
+    - name: Setup Nuget.exe
+      uses: warrenbuckley/Setup-Nuget@v1
+
+    - name: Nuget Push
+      run: nuget push *.nupkg
