@@ -1,0 +1,356 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyTitle>StreamCompanionTypes</AssemblyTitle>
+    <Product>osu!StreamCompanion</Product>
+    <Copyright>Copyright © 2019</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Piotrekol</Authors>
+    <Company />
+    <PackageId>osuStreamCompanionTypes</PackageId>
+    <Description>Provides types needed for writing plugins for osu!StreamCompanion https://github.com/Piotrekol/StreamCompanion</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Piotrekol/StreamCompanionTypes</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Piotrekol/StreamCompanionTypes</RepositoryUrl>
+    <title>osu!StreamCompanionTypes</title>
+    <summary>Provides types needed for writing plugins for osu!StreamCompanion</summary>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.6.0" />
+    <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="CollectionManager\CollectionManagerDll\CollectionManagerDll.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="CollectionManager\App\BeatmapListingActionsHandler.cs" />
+    <Compile Remove="CollectionManager\App\CollectionEditor.cs" />
+    <Compile Remove="CollectionManager\App\GuiActionsHandler.cs" />
+    <Compile Remove="CollectionManager\App\Initalizer.cs" />
+    <Compile Remove="CollectionManager\App\OsuDownloadManager.cs" />
+    <Compile Remove="CollectionManager\App\Program.cs" />
+    <Compile Remove="CollectionManager\App\Settings.cs" />
+    <Compile Remove="CollectionManager\App\SidePanelActionsHandler.cs" />
+    <Compile Remove="CollectionManager\App\UpdateChecker.cs" />
+    <Compile Remove="CollectionManager\CollectionGenerator\Program.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Example.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Helpers.cs" />
+    <Compile Remove="CollectionManager\Common\BeatmapListingAction.cs" />
+    <Compile Remove="CollectionManager\Common\GuiHelpers.cs" />
+    <Compile Remove="CollectionManager\Common\MainSidePanelActions.cs" />
+    <Compile Remove="CollectionManager\Common\MessageBoxType.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Helpers.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\UserDialogs.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\YesNoForm.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\YesNoForm.Designer.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\AudioFileReaderEx.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\AudioPlayer.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\IMusicPlayer.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\MusicPlayerManager.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\NAudioPlayer.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\SoundTouchPlayer.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\WaveStreamExtensions.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\DataListView.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\DataTreeListView.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\FastDataListView.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\FastObjectListView.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\ObjectListView.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\ObjectListView.DesignTime.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\OLVColumn.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\TreeListView.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\VirtualObjectListView.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\IBeatmapListingBindingProvider.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\IFormEvents.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\IGenericMapSetterModel.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\IUpdateModel.cs" />
+    <Compile Remove="CollectionManager\App\Misc\BeatmapListFilter.cs" />
+    <Compile Remove="CollectionManager\App\Misc\GuiComponentsProvider.cs" />
+    <Compile Remove="CollectionManager\App\Misc\Helpers.cs" />
+    <Compile Remove="CollectionManager\App\Models\GenericMapSetterModel.cs" />
+    <Compile Remove="CollectionManager\App\Properties\AssemblyInfo.cs" />
+    <Compile Remove="CollectionManager\App\Properties\Resources.Designer.cs" />
+    <Compile Remove="CollectionManager\App\Properties\Settings.Designer.cs" />
+    <Compile Remove="CollectionManager\CollectionGenerator\Properties\AssemblyInfo.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\Beatmap.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\BeatmapExtension.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\Beatmaps.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\Collection.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\Collections.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\ICollection.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\Mods.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\PlayModeStars.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\RangeObservableCollection.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\Replay.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\Score.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\Scores.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\StarRating.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\DataTypes\WebCollection.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Enums\CollectionEdit.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Enums\OsuGrade.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Enums\PlayMode.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Exceptions\BeatmapCacherNotInitalizedException.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Exceptions\NotOsuDirectoryException.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Interfaces\ICollectionEditor.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Interfaces\ICollectionNameValidator.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Interfaces\ILogger.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Interfaces\IMapDataManager.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Interfaces\IReplay.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Interfaces\IScoreDataStorer.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Properties\Annotations.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Properties\Annotations1.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Properties\AssemblyInfo.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDllTests\Properties\AssemblyInfo.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\DataTypes\ApiScore.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\DataTypes\CollectionGeneratorConfiguration.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\DataTypes\ScoreSaveConditions.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Enums\CollectionListSaveType.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\DifficultyCalculator.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Properties\AssemblyInfo.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Utils\BeatmapUtils.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Utils\ImpatientWebClient.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Utils\ListGeneratorUtils.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Utils\RobotoFormatter.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDllTests\Properties\AssemblyInfo.cs" />
+    <Compile Remove="CollectionManager\Common\EventArgs\EventArgs.cs" />
+    <Compile Remove="CollectionManager\Common\EventArgs\FloatEventArgs.cs" />
+    <Compile Remove="CollectionManager\Common\EventArgs\IntEventArgs.cs" />
+    <Compile Remove="CollectionManager\Common\EventArgs\StringEventArgs.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\IOnlineCollectionList.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\IUserDialogs.cs" />
+    <Compile Remove="CollectionManager\Common\Properties\AssemblyInfo.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\BeatmapListingView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\BeatmapListingView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\BeatmapThumbnailView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\BeatmapThumbnailView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\CollectionListingView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\CollectionListingView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\CollectionRenameView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\CollectionRenameView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\CollectionTextView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\CollectionTextView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\CombinedBeatmapPreviewView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\CombinedBeatmapPreviewView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\CombinedListingView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\CombinedListingView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\DownloadManagerView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\DownloadManagerView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\InfoTextView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\InfoTextView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\MainSidePanelView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\MainSidePanelView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\MusicControlView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\MusicControlView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\TabControlEx.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\UsernameGeneratorView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\UsernameGeneratorView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\UserTopGeneratorView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Controls\UserTopGeneratorView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\BaseForm.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\BeatmapListingForm.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\BeatmapListingForm.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\CollectionAddRenameForm.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\CollectionAddRenameForm.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\DownloadManagerFormView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\DownloadManagerFormView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\LoginFormView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\LoginFormView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\MainFormView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\MainFormView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\OsustatsApiLoginFormView.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\OsustatsApiLoginFormView.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\UsernameGeneratorForm.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\UsernameGeneratorForm.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\UserTopGeneratorForm.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Forms\UserTopGeneratorForm.Designer.cs" />
+    <Compile Remove="CollectionManager\GuiComponents\Properties\AssemblyInfo.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\Properties\AssemblyInfo.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\SoundTouch\SoundTouch.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\SoundTouch\SoundTouchInterop32.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\SoundTouch\SoundTouchInterop64.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\SoundTouch\SoundTouchProfile.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\SoundTouch\SoundTouchSettings.cs" />
+    <Compile Remove="CollectionManager\MusicPlayer\SoundTouch\VarispeedSampleProvider.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\CellEditing\CellEditKeyEngine.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\CellEditing\CellEditors.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\CellEditing\EditorRegistry.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\DragDrop\DragSource.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\DragDrop\DropSink.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\DragDrop\OLVDataObject.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Filtering\Cluster.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Filtering\ClusteringStrategy.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Filtering\ClustersFromGroupsStrategy.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Filtering\DateTimeClusteringStrategy.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Filtering\FilterMenuBuilder.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Filtering\Filters.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Filtering\FlagClusteringStrategy.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Filtering\ICluster.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Filtering\IClusteringStrategy.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Filtering\TextMatchFilter.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\Attributes.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\Comparers.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\DataSourceAdapter.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\Delegates.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\DragSource.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\DropSink.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\Enums.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\Events.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\GroupingParameters.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\Groups.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\Munger.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\NativeMethods.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\NullableDictionary.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\OLVListItem.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\OLVListSubItem.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\OlvListViewHitTestInfo.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\TreeDataSourceAdapter.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\VirtualGroups.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Implementation\VirtualListDataSource.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Properties\AssemblyInfo.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Properties\Resources.Designer.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Rendering\Adornments.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Rendering\Decorations.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Rendering\Overlays.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Rendering\Renderers.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Rendering\Styles.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Rendering\TreeRenderer.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\SubControls\GlassPanelForm.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\SubControls\HeaderControl.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\SubControls\ToolStripCheckedListBox.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\SubControls\ToolTipControl.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Utilities\ColumnSelectionForm.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Utilities\ColumnSelectionForm.Designer.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Utilities\Generator.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Utilities\OLVExporter.cs" />
+    <Compile Remove="CollectionManager\ObjectListView\Utilities\TypedObjectListView.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\Controls\IBeatmapListingModel.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\Controls\IBeatmapListingPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\Controls\IBeatmapThumbnailModel.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\Controls\ICollectionAddRenameModel.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\Controls\ICollectionListingModel.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\Controls\ICollectionTextModel.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\Controls\ICombinedBeatmapPreviewModel.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\Controls\IDownloadManagerModel.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\Controls\IInfoTextModel.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\Controls\IMusicControlModel.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\Controls\IUsernameGeneratorModel.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\Controls\IUserTopGeneratorModel.cs" />
+    <Compile Remove="CollectionManager\App\Interfaces\Forms\IMainFormModel.cs" />
+    <Compile Remove="CollectionManager\App\Models\Controls\BeatmapListingModel.cs" />
+    <Compile Remove="CollectionManager\App\Models\Controls\BeatmapThumbnailModel.cs" />
+    <Compile Remove="CollectionManager\App\Models\Controls\CollectionListingModel.cs" />
+    <Compile Remove="CollectionManager\App\Models\Controls\CollectionRenameModel.cs" />
+    <Compile Remove="CollectionManager\App\Models\Controls\CollectionTextModel.cs" />
+    <Compile Remove="CollectionManager\App\Models\Controls\CombinedBeatmapPreviewModel.cs" />
+    <Compile Remove="CollectionManager\App\Models\Controls\DownloadManagerModel.cs" />
+    <Compile Remove="CollectionManager\App\Models\Controls\InfoTextModel.cs" />
+    <Compile Remove="CollectionManager\App\Models\Controls\MusicControlModel.cs" />
+    <Compile Remove="CollectionManager\App\Models\Controls\UsernameGeneratorModel.cs" />
+    <Compile Remove="CollectionManager\App\Models\Controls\UserTopGeneratorModel.cs" />
+    <Compile Remove="CollectionManager\App\Models\Forms\MainFormModel.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Controls\BeatmapListingPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Controls\BeatmapThumbnailPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Controls\CollectionAddRenamePresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Controls\CollectionListingPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Controls\CollectionTextPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Controls\CombinedBeatmapPreviewPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Controls\CombinedListingPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Controls\DownloadManagerPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Controls\InfoTextPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Controls\MusicControlPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Controls\UsernameGeneratorPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Controls\UserTopGeneratorPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Forms\BeatmapListingFormPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Forms\CollectionAddRenameFormPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Forms\DownloadManagerFormPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Forms\MainFormPresenter.cs" />
+    <Compile Remove="CollectionManager\App\Presenters\Forms\UserTopGeneratorFormPresenter.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\CollectionsManager\CollectionEditArgs.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\CollectionsManager\CollectionsManager.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\CollectionsManager\CollectionsManagerWithCounts.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\OsuBinaryReader.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\OsuBinaryWriter.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\OsuFileIo.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\OsuPathResolver.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\OsuSettingsLoader.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\ModParser\ModParser.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDllTests\Modules\ModParser\ModParserTests.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\API\BeatmapData.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\API\BeatmapExtensionEx.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\BeatmapFilter\BeatmapFilter.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\CollectionApiGenerator\CollectionsGenerator.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\CollectionApiGenerator\UserTopGenerator.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\CollectionListGenerator\BeatmapType.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\CollectionListGenerator\IListGenerator.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\CollectionListGenerator\ListGenerator.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\DownloadManager\ILoginForm.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\DownloadManager\OsuDownloader.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\TextProcessor\TextProcessor.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\IBeatmapListingView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\IBeatmapThumbnailView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\ICollectionAddView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\ICollectionListingView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\ICollectionRenameView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\ICollectionTextView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\ICombinedBeatmapPreviewView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\ICombinedListingView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\IDownloadManagerView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\IInfoTextView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\IMainSidePanelView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\IMusicControlView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\IUsernameGeneratorView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Controls\IUserTopGenerator.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Forms\IBeatmapListingForm.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Forms\ICollectionAddRenameForm.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Forms\IDownloadManagerFormView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Forms\IForm.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Forms\ILoginForm.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Forms\IMainFormView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Forms\IOsustatsApiLoginFormView.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Forms\IUsernameGeneratorForm.cs" />
+    <Compile Remove="CollectionManager\Common\Interfaces\Forms\IUserTopGeneratorForm.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\FileCollections\CollectionLoader.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\FileCollections\OsdbCollectionHandler.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\FileCollections\OsuCollectionHandler.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\OsuDb\LOsuDatabaseLoader.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\OsuDb\MapCacher.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\OsuDb\OsuDatabase.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\OsuDb\OsuDatabaseReader.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\OsuScoresDb\ScoresCacher.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\Modules\FileIO\OsuScoresDb\ScoresDatabaseIO.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\obj\Debug\netstandard20\CollectionManagerDll.AssemblyInfo.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerDll\obj\Release\netstandard20\CollectionManagerDll.AssemblyInfo.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\API\osu\OsuApi.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\API\osu\OsuSite.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\API\osustats\OsuStatsApi.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\API\osustats\UserInformation.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\CollectionListGenerator\ListTypes\BeatmapListGenerator.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\CollectionListGenerator\ListTypes\GenericGenerator.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\CollectionListGenerator\ListTypes\HtmlListGenerator.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\CollectionListGenerator\ListTypes\OsuBbCodeGenerator.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\CollectionListGenerator\ListTypes\RedditCodeGenerator.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\CollectionListGenerator\ListTypes\TxtListGenerator.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\CollectionListGenerator\ListTypes\UserListGenerator.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\DownloadManager\API\CookieAwareWebClient.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\DownloadManager\API\CookieContainerExtensions.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\DownloadManager\API\DownloadItem.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\DownloadManager\API\DownloadManager.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\DownloadManager\API\DownloadProgress.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\DownloadManager\API\DownloadProgressReportEventArgs.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDll\Modules\DownloadManager\API\LoginData.cs" />
+    <Compile Remove="CollectionManager\CollectionManagerExtensionsDllTests\Modules\API\osu\OsuSiteTests.cs" />
+  </ItemGroup>
+</Project>

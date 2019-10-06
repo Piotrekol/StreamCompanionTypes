@@ -1,0 +1,3 @@
+[submodule "submodules/CollectionManager"]
+	path = CollectionManager
+	url = https://github.com/Piotrekol/CollectionManager
