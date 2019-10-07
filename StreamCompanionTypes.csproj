@@ -14,7 +14,7 @@
     <RepositoryUrl>https://github.com/Piotrekol/StreamCompanionTypes</RepositoryUrl>
     <title>osu!StreamCompanionTypes</title>
     <summary>Provides types needed for writing plugins for osu!StreamCompanion</summary>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <IncludeSymbols>true</IncludeSymbols> 
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>

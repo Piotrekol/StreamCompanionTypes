@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StreamCompanionTypes.DataTypes
+namespace StreamCompanionTypes.Enums
 {
     [Flags]
     public enum LogLevel

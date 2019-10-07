@@ -6,12 +6,12 @@ using System.Globalization;
 
 namespace StreamCompanionTypes.DataTypes
 {
-
     public class Token
     {
         public TokenType Type { get; set; }
         private object RawValue { get; set; }
         public bool FormatIsValid { get; private set; }
+
         public object Value
         {
             get { return RawValue; }
@@ -56,11 +56,14 @@ namespace StreamCompanionTypes.DataTypes
         }
 
         public string FormatedValue { get; set; }
+
         /// <summary>
         /// Name of the plugin that created this token
         /// </summary>
         public string PluginName { get; set; }
-        internal Token(object value, TokenType type = TokenType.Normal, string format = null, object defaultValue = null)
+
+        internal Token(object value, TokenType type = TokenType.Normal, string format = null,
+            object defaultValue = null)
         {
             Debug.Assert(!(value is Token));
 
@@ -69,6 +72,7 @@ namespace StreamCompanionTypes.DataTypes
             Type = type;
             Value = value;
         }
+
         public void Reset()
         {
             Value = _defaultValue;
@@ -76,10 +80,11 @@ namespace StreamCompanionTypes.DataTypes
 
         public Token Clone()
         {
-            return (Token)this.MemberwiseClone();
+            return (Token) this.MemberwiseClone();
         }
 
-        private static string TryFormat(IFormatProvider formatProvider, string format, out bool valid, params object[] args)
+        private static string TryFormat(IFormatProvider formatProvider, string format, out bool valid,
+            params object[] args)
         {
             var result = "INVALID FORMAT";
             try
@@ -94,6 +99,7 @@ namespace StreamCompanionTypes.DataTypes
 
             return result;
         }
+
         public double Evaluate(string expression)
         {
             try
@@ -102,7 +108,7 @@ namespace StreamCompanionTypes.DataTypes
                 table.Columns.Add("expression", typeof(string), expression);
                 DataRow row = table.NewRow();
                 table.Rows.Add(row);
-                return double.Parse(((string)row["expression"]).Replace(',', '.'), CultureInfo.InvariantCulture);
+                return double.Parse(((string) row["expression"]).Replace(',', '.'), CultureInfo.InvariantCulture);
             }
             catch
             {
@@ -111,5 +117,4 @@ namespace StreamCompanionTypes.DataTypes
             }
         }
     }
-
 }

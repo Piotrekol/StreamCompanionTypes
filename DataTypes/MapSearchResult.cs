@@ -1,5 +1,6 @@
 ﻿using CollectionManager.Enums;
 using System.Collections.Generic;
+using StreamCompanionTypes.Enums;
 
 namespace StreamCompanionTypes.DataTypes
 {

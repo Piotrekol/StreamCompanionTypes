@@ -1,4 +1,4 @@
-﻿using StreamCompanionTypes.DataTypes;
+﻿using StreamCompanionTypes.Enums;
 
 namespace StreamCompanionTypes.Interfaces
 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using CollectionManager.Enums;
+using StreamCompanionTypes.Enums;
 
 namespace StreamCompanionTypes.DataTypes
 {
@@ -22,12 +23,5 @@ namespace StreamCompanionTypes.DataTypes
         {
             SourceName = sourceName;
         }
-    }
-
-    public enum OsuEventType
-    {
-        MapChange,//When map changes
-        MapStatusChange,//When user map status changes(eg. listening->watching, playing->listening)
-        SceneChange,//When osu! ingame scene changes(eg. user goes from main menu to song selection)
     }
 }

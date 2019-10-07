@@ -8,7 +8,7 @@ namespace StreamCompanionTypes
         //main
         public readonly ConfigEntry MainOsuDirectory = new ConfigEntry("MainOsuDirectory", "");
         public readonly ConfigEntry SongsFolderLocation = new ConfigEntry("SongsFolderLocation", "Songs");
-        public readonly ConfigEntry LogLevel = new ConfigEntry("LogLevel", StreamCompanionTypes.DataTypes.LogLevel.Disabled.GetHashCode());
+        public readonly ConfigEntry LogLevel = new ConfigEntry("LogLevel", Enums.LogLevel.Disabled.GetHashCode());
         public readonly ConfigEntry StartHidden = new ConfigEntry("StartHidden", false);
         public readonly ConfigEntry Console = new ConfigEntry("console", false);
         public readonly ConfigEntry LoadingRawBeatmaps = new ConfigEntry("LoadingRawBeatmaps", false);
