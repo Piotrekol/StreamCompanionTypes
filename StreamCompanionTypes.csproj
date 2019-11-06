@@ -14,7 +14,7 @@
     <RepositoryUrl>https://github.com/Piotrekol/StreamCompanionTypes</RepositoryUrl>
     <title>osu!StreamCompanionTypes</title>
     <summary>Provides types needed for writing plugins for osu!StreamCompanion</summary>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <IncludeSymbols>true</IncludeSymbols> 
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
@@ -28,7 +28,7 @@
     <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CollectionManager" Version="1.0.2" />
+    <PackageReference Include="CollectionManager" Version="1.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.6.0" />
     <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
