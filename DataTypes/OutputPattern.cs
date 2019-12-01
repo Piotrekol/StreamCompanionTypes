@@ -116,6 +116,10 @@ namespace StreamCompanionTypes.DataTypes
         [Browsable(false)]
         public int FontSize { get; set; } = 12;
 
+        [JsonProperty(PropertyName = "Aligment")]
+        [Browsable(false)]
+        public int Aligment { get; set; } = 0;
+
         [JsonProperty(PropertyName = "SaveEvent")]
         [Browsable(false)]
         public OsuStatus SaveEvent
