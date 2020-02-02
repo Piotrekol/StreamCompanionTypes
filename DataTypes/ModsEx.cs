@@ -1,23 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CollectionManager.DataTypes;
 
 namespace StreamCompanionTypes.DataTypes
 {
-    public class ModsEx : IEqualityComparer<ModsEx>
+    public class ModsEx : IEquatable<ModsEx>, IModsEx
     {
-        private readonly bool _showShortMod;
-
-        public ModsEx(bool showShortMod, Mods mods, string shortMods, string longMods)
-        {
-            _showShortMod = showShortMod;
-            ShortMods = shortMods;
-            LongMods = longMods;
-            Mods = mods;
-        }
-
-        public readonly Mods Mods;
+        public bool ShowShortMod { get; }
+        public Mods Mods { get; }
         private string _shortMods;
         private string _filteredShortMods;
+
         private string ShortMods
         {
             get => _shortMods;
@@ -36,33 +29,47 @@ namespace StreamCompanionTypes.DataTypes
         /// <summary>
         /// Mods value shown to user
         /// </summary>
-        public string ShownMods => _showShortMod ? ShortMods : LongMods;
+        public string ShownMods => ShowShortMod ? ShortMods : LongMods;
 
         /// <summary>
         /// Mods used for processing (eg. pp calculation)
         /// </summary>
         public string WorkingMods => Mods == Mods.Omod ? "" : _filteredShortMods;
 
-        public bool Equals(ModsEx x, ModsEx y)
+        public ModsEx(bool showShortMod, Mods mods, string shortMods, string longMods)
         {
-            if (
-                (x == null && y != null) ||
-                (x != null && y == null)
-            )
-                return false;
-
-            if (x == null && y == null)
-            {
-                return true;
-            }
-
-            return
-                x.Mods == y.Mods && x._showShortMod == y._showShortMod;
+            ShowShortMod = showShortMod;
+            ShortMods = shortMods;
+            LongMods = longMods;
+            Mods = mods;
         }
 
-        public int GetHashCode(ModsEx obj)
+        public bool Equals(ModsEx other)
         {
-            return base.GetHashCode();
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return _shortMods == other._shortMods && _filteredShortMods == other._filteredShortMods && LongMods == other.LongMods && ShowShortMod == other.ShowShortMod && Mods == other.Mods;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((ModsEx) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (_shortMods != null ? _shortMods.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (_filteredShortMods != null ? _filteredShortMods.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (LongMods != null ? LongMods.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ ShowShortMod.GetHashCode();
+                hashCode = (hashCode * 397) ^ (int) Mods;
+                return hashCode;
+            }
         }
     }
 }

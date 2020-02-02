@@ -1,10 +1,10 @@
 ﻿using CollectionManager.DataTypes;
-using Beatmap = StreamCompanionTypes.DataTypes.Beatmap;
+using StreamCompanionTypes.DataTypes;
 
 namespace StreamCompanionTypes.Interfaces
 {
     public interface IDifficultyCalculator
     {
-        Beatmap ApplyMods(Beatmap map, Mods mods);
+        IBeatmap ApplyMods(IBeatmap map, Mods mods);
     }
 }

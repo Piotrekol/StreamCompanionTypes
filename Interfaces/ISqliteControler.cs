@@ -36,28 +36,28 @@ namespace StreamCompanionTypes.Interfaces
         /// When MassStoring is active, only new maps are queried to Sqlite 
         /// </summary>
         /// <param name="beatmap">Beatmap to insert</param>
-        new void StoreBeatmap(Beatmap beatmap);
+        new void StoreBeatmap(IBeatmap beatmap);
 
         /// <summary>
         /// Used for inserting temporary beatmap data to sql table.
         /// Data stored this way won't be preserved on the following application runs
         /// </summary>
         /// <param name="beatmap">beatmap to insert</param>
-        void StoreTempBeatmap(Beatmap beatmap);
+        void StoreTempBeatmap(IBeatmap beatmap);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="mapId"></param>
         /// <returns>Beatmap object with data, or null on not found</returns>
-        Beatmap GetBeatmap(int mapId);
+        IBeatmap GetBeatmap(int mapId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="mapId"></param>
         /// <returns>Beatmap object with data, or null on not found</returns>
-        Beatmap GetBeatmap(string mapHash);
+        IBeatmap GetBeatmap(string mapHash);
 
         /// <summary>
         /// 
@@ -66,7 +66,7 @@ namespace StreamCompanionTypes.Interfaces
         /// <param name="title"></param>
         /// <param name="diff"></param>
         /// <returns>Beatmap object with filled or not map data</returns>
-        Beatmap GetBeatmap(string artist, string title, string diff, string raw);
+        IBeatmap GetBeatmap(string artist, string title, string diff, string raw);
 
         new void Dispose();
         new void StoreBeatmap(CollectionManager.DataTypes.Beatmap beatmap);

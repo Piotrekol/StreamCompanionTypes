@@ -1,6 +1,8 @@
 using CollectionManager.Annotations;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +13,7 @@ using StreamCompanionTypes.Enums;
 
 namespace StreamCompanionTypes.DataTypes
 {
-    public class OutputPattern : EventArgs, INotifyPropertyChanged, ICloneable
+    public class OutputPattern : EventArgs, INotifyPropertyChanged, ICloneable, IOutputPattern
     {
         private static readonly ObservableCollection<string> LiveTokenNames = new ObservableCollection<string>();
 
@@ -21,8 +23,9 @@ namespace StreamCompanionTypes.DataTypes
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        [Editable(false)]
         [IgnoreDataMember]
-        public Tokens Replacements;
+        public Tokens Replacements { get; set; }
 
         private static readonly ReadOnlyObservableCollection<string> ReadOnlyLiveTokenNames = new ReadOnlyObservableCollection<string>(LiveTokenNames);
 
@@ -60,7 +63,7 @@ namespace StreamCompanionTypes.DataTypes
 
                 _pattern = value;
                 SetMemoryFormat();
-               
+
                 OnPropertyChanged(nameof(Pattern));
             }
         }
@@ -77,17 +80,10 @@ namespace StreamCompanionTypes.DataTypes
         {
             get
             {
-                switch (SaveEvent)
-                {
-                    case OsuStatus.All: return "All";
-                    case OsuStatus.Playing: return "Playing";
-                    case OsuStatus.Editing: return "Editing";
-                    case OsuStatus.Listening: return "Listening";
-                    case OsuStatus.Watching: return "Watching";
-                    case OsuStatus.ResultsScreen: return "ResultsScreen";
-                    case OsuStatus.Null: return "Never";
-                    default: return "Unknown";
-                }
+                if (SaveEvent == OsuStatus.Null)
+                    return "Never";
+
+                return SaveEvent.ToString();
             }
         }
 
@@ -142,7 +138,7 @@ namespace StreamCompanionTypes.DataTypes
         [IgnoreDataMember]
         [DisplayName("Memory format")]
         public bool IsMemoryFormat { get; private set; }
-        
+
         public OutputPattern()
         {
             LiveTokenNames.CollectionChanged += (_, __) => SetMemoryFormat();
@@ -159,12 +155,24 @@ namespace StreamCompanionTypes.DataTypes
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public string GetFormatedPattern()
+        public string GetFormatedPattern(OsuStatus status = OsuStatus.All)
+            => FormatPattern(Pattern, Replacements, SaveEvent, status);
+
+        public static string FormatPattern(string pattern, Tokens replacements, OsuStatus saveEvent, OsuStatus currentStatus = OsuStatus.All)
         {
-            if (Replacements != null)
+            if (replacements != null && (saveEvent & currentStatus) != 0)
             {
-                var toFormat = Pattern ?? "";
-                foreach (var r in Replacements)
+                var toFormat = pattern ?? "";
+                foreach (var r in replacements)
+                {
+                    if (toFormat.Contains($"!{r.Key}!"))
+                    {
+                        if (!r.Value.CanSave(currentStatus))
+                            return string.Empty;
+                    }
+                }
+
+                foreach (var r in replacements)
                 {
                     string replacement;
                     if (r.Value.Value is null)
@@ -176,7 +184,8 @@ namespace StreamCompanionTypes.DataTypes
                         replacement = r.Value.FormatedValue;
                     }
 
-                    toFormat = toFormat.Replace($"!{r.Key}!", replacement, StringComparison.InvariantCultureIgnoreCase);
+                    toFormat = toFormat.Replace($"!{r.Key}!", replacement,
+                        StringComparison.InvariantCultureIgnoreCase);
                 }
 
                 return toFormat;

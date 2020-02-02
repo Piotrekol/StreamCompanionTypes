@@ -1,10 +1,11 @@
 ﻿using StreamCompanionTypes.Enums;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace StreamCompanionTypes.DataTypes
 {
-    public class Tokens : Dictionary<string, Token>
+    public class Tokens : Dictionary<string, IToken>
     {
         public Tokens(string groupName = "Default")
         {
@@ -15,17 +16,16 @@ namespace StreamCompanionTypes.DataTypes
 
         /// <summary>
         /// Stores all created tokens<para/>
-        /// DO NOT add or remove any of the values of this dictionary
         /// </summary>
-        public static Dictionary<string, Token> AllTokens { get; set; } = new Dictionary<string, Token>();
-
+        private static Dictionary<string, IToken> _AllTokens { get; set; } = new Dictionary<string, IToken>();
+        public static ReadOnlyDictionary<string, IToken> AllTokens { get; } = new ReadOnlyDictionary<string, IToken>(_AllTokens);
         public static event EventHandler AllTokensChanged;
         /// <summary>
         /// Returns existing token instance with updated value or creates new instance it if it doesn't exist
         /// </summary>
-        internal static Token SetToken(string pluginName, string tokenName, object value, TokenType type = TokenType.Normal, string format = null, object defaultValue = null)
+        internal static IToken SetToken(string pluginName, string tokenName, object value, TokenType type = TokenType.Normal, string format = null, object defaultValue = null, OsuStatus whitelist = OsuStatus.All)
         {
-            Token token;
+            IToken token;
 
             if (AllTokens.ContainsKey(tokenName))
             {
@@ -34,9 +34,8 @@ namespace StreamCompanionTypes.DataTypes
             }
             else
             {
-                token = new Token(value, type, format, defaultValue);
-                token.PluginName = pluginName;
-                AllTokens[tokenName] = token;
+                token = new Token(value, type, format, defaultValue, whitelist) { PluginName = pluginName };
+                _AllTokens[tokenName] = token;
 
                 if ((type & TokenType.Live) != 0)
                     OutputPattern.AddLiveToken(tokenName);
@@ -49,13 +48,13 @@ namespace StreamCompanionTypes.DataTypes
 
         public static TokenSetter CreateTokenSetter(string pluginName)
         {
-            return (tokenName, value, type, format, defaultValue) => SetToken(pluginName, tokenName, value, type, format, defaultValue);
+            return (tokenName, value, type, format, defaultValue, whitelist) => SetToken(pluginName, tokenName, value, type, format, defaultValue, whitelist);
         }
 
         /// <summary>
         /// <inheritdoc cref="Tokens.SetToken"/>
         /// </summary>
-        public delegate Token TokenSetter(string tokenName, object value, TokenType type = TokenType.Normal,
-            string format = null, object defaultValue = null);
+        public delegate IToken TokenSetter(string tokenName, object value, TokenType type = TokenType.Normal,
+            string format = null, object defaultValue = null, OsuStatus whitelist = OsuStatus.All);
     }
 }

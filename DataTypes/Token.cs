@@ -6,11 +6,18 @@ using System.Globalization;
 
 namespace StreamCompanionTypes.DataTypes
 {
-    public class Token
+    public class Token : IToken
     {
         public TokenType Type { get; set; }
         private object RawValue { get; set; }
         public bool FormatIsValid { get; private set; }
+
+        /// <summary>
+        /// in what <see cref="OsuStatus"/>es this token can be saved in
+        /// </summary>
+        public OsuStatus StatusWhitelist { get; set; }
+
+        public virtual bool CanSave(OsuStatus status) => (StatusWhitelist & status) != 0;
 
         public object Value
         {
@@ -63,11 +70,12 @@ namespace StreamCompanionTypes.DataTypes
         public string PluginName { get; set; }
 
         internal Token(object value, TokenType type = TokenType.Normal, string format = null,
-            object defaultValue = null)
+            object defaultValue = null, OsuStatus whitelist = OsuStatus.All)
         {
-            Debug.Assert(!(value is Token));
+            Debug.Assert(!(value is IToken));
 
             Format = format;
+            StatusWhitelist = whitelist;
             _defaultValue = defaultValue;
             Type = type;
             Value = value;
@@ -78,9 +86,9 @@ namespace StreamCompanionTypes.DataTypes
             Value = _defaultValue;
         }
 
-        public Token Clone()
+        public IToken Clone()
         {
-            return (Token) this.MemberwiseClone();
+            return (IToken)this.MemberwiseClone();
         }
 
         private static string TryFormat(IFormatProvider formatProvider, string format, out bool valid,
@@ -108,7 +116,7 @@ namespace StreamCompanionTypes.DataTypes
                 table.Columns.Add("expression", typeof(string), expression);
                 DataRow row = table.NewRow();
                 table.Rows.Add(row);
-                return double.Parse(((string) row["expression"]).Replace(',', '.'), CultureInfo.InvariantCulture);
+                return double.Parse(((string)row["expression"]).Replace(',', '.'), CultureInfo.InvariantCulture);
             }
             catch
             {

@@ -6,7 +6,7 @@ namespace StreamCompanionTypes.Interfaces
     {
         void StartMassStoring();
         void EndMassStoring();
-        void StoreBeatmap(Beatmap beatmap);
+        void StoreBeatmap(IBeatmap beatmap);
 
     }
 }

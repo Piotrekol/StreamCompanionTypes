@@ -6,6 +6,6 @@ namespace StreamCompanionTypes.Interfaces
 {
     public interface IMapDataParser
     {
-        List<OutputPattern> GetFormatedPatterns(Tokens replacements,OsuStatus status);
+        List<IOutputPattern> GetFormatedPatterns(Tokens replacements,OsuStatus status);
     }
 }

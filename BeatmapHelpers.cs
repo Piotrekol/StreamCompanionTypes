@@ -6,11 +6,11 @@ namespace StreamCompanionTypes
 {
     public static class BeatmapHelpers
     {
-        public static string BeatmapDirectory(this Beatmap beatmap, string songsDirectory)
+        public static string BeatmapDirectory(this IBeatmap beatmap, string songsDirectory)
         {
             return Path.Combine(songsDirectory, beatmap.Dir);
         }
-        public static string FullOsuFileLocation(this Beatmap beatmap, string songsDirectory)
+        public static string FullOsuFileLocation(this IBeatmap beatmap, string songsDirectory)
         {
             var beatmapDirectory = beatmap.BeatmapDirectory(songsDirectory);
             if (string.IsNullOrEmpty(beatmapDirectory) || string.IsNullOrEmpty(beatmap.OsuFileName))
@@ -30,12 +30,12 @@ namespace StreamCompanionTypes
             return dir;
         }
 
-        public static string FullOsuFileLocation(this Beatmap beatmap, ISettingsHandler settings)
+        public static string FullOsuFileLocation(this IBeatmap beatmap, ISettingsHandler settings)
         {
             return beatmap.FullOsuFileLocation(GetFullSongsLocation(settings));
         }
 
-        public static bool IsValidBeatmap(this Beatmap beatmap, ISettingsHandler settings, out string fullFileLocation)
+        public static bool IsValidBeatmap(this IBeatmap beatmap, ISettingsHandler settings, out string fullFileLocation)
         {
             fullFileLocation = beatmap.FullOsuFileLocation(settings);
 
