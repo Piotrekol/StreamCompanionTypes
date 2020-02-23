@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using StreamCompanionTypes.Enums;
@@ -162,10 +163,13 @@ namespace StreamCompanionTypes.DataTypes
         {
             if (replacements != null && (saveEvent & currentStatus) != 0)
             {
-                var toFormat = pattern ?? "";
+                if (string.IsNullOrWhiteSpace(pattern))
+                    return string.Empty;
+
+                var toFormat = pattern;
                 foreach (var r in replacements)
                 {
-                    if (toFormat.Contains($"!{r.Key}!"))
+                    if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(toFormat, $"!{r.Key}!",CompareOptions.IgnoreCase) >=0)
                     {
                         if (!r.Value.CanSave(currentStatus))
                             return string.Empty;
