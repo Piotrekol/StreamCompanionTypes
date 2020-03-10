@@ -1,5 +1,8 @@
 ﻿namespace StreamCompanionTypes.DataTypes
 {
+    /// <summary>
+    /// StreamCompanion configuration entry with can store any primitive type(int,string,double...), for arrays of any sort serialize data to string beforehand(json recommended)
+    /// </summary>
     public class ConfigEntry
     {
         public ConfigEntry(string name, object value)

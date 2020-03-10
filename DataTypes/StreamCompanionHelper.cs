@@ -2,7 +2,7 @@
 
 namespace StreamCompanionTypes.DataTypes
 {
-    public static class StreamCompanionHelper //Designer doesn't allow for this class to be abstract
+    public static class StreamCompanionHelper
     {
         public static Bitmap StreamCompanionLogo()
         {

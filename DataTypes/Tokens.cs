@@ -5,6 +5,9 @@ using System.Collections.ObjectModel;
 
 namespace StreamCompanionTypes.DataTypes
 {
+    /// <summary>
+    /// IToken wrapper with static methods for creating, updating and accessing tokens
+    /// </summary>
     public class Tokens : Dictionary<string, IToken>
     {
         public Tokens(string groupName = "Default")
@@ -18,10 +21,19 @@ namespace StreamCompanionTypes.DataTypes
         /// Stores all created tokens<para/>
         /// </summary>
         private static Dictionary<string, IToken> _AllTokens { get; set; } = new Dictionary<string, IToken>();
-        public static ReadOnlyDictionary<string, IToken> AllTokens { get; } = new ReadOnlyDictionary<string, IToken>(_AllTokens);
-        public static event EventHandler AllTokensChanged;
+        
         /// <summary>
-        /// Returns existing token instance with updated value or creates new instance it if it doesn't exist
+        /// <inheritdoc cref="_AllTokens"/>
+        /// </summary>
+        public static ReadOnlyDictionary<string, IToken> AllTokens { get; } = new ReadOnlyDictionary<string, IToken>(_AllTokens);
+
+        /// <summary>
+        /// Event fired whenever any of the tokens in <see cref="AllTokens"/> updates, with token name as parameter
+        /// </summary>
+        public static event EventHandler<string> AllTokensChanged;
+
+        /// <summary>
+        /// Returns existing token instance with updated value or creates new instance if it doesn't exist
         /// </summary>
         internal static IToken SetToken(string pluginName, string tokenName, object value, TokenType type = TokenType.Normal, string format = null, object defaultValue = null, OsuStatus whitelist = OsuStatus.All)
         {
@@ -40,7 +52,7 @@ namespace StreamCompanionTypes.DataTypes
                 if ((type & TokenType.Live) != 0)
                     OutputPattern.AddLiveToken(tokenName);
 
-                AllTokensChanged?.Invoke(null, EventArgs.Empty);
+                AllTokensChanged?.Invoke(null, tokenName);
             }
 
             return token;
