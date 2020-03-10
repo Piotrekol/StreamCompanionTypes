@@ -2,7 +2,7 @@ name: nuget CI
 on:
   push:
     tags: 
-      - v2.*
+      - v*
 jobs:
   build:
     runs-on: windows-latest
