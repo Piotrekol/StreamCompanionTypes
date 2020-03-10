@@ -1,8 +1,8 @@
 ﻿using StreamCompanionTypes.DataTypes;
 
-namespace StreamCompanionTypes.Interfaces
+namespace StreamCompanionTypes.Interfaces.Consumers
 {
-    public interface IMapDataGetter
+    public interface IMapDataConsumer
     {
         void SetNewMap(MapSearchResult map);
     }

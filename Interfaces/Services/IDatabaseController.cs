@@ -2,9 +2,9 @@
 using System.Data.Common;
 using StreamCompanionTypes.DataTypes;
 
-namespace StreamCompanionTypes.Interfaces
+namespace StreamCompanionTypes.Interfaces.Services
 {
-    public interface ISqliteControler : IDisposable, IMapDataStorer, CollectionManager.Interfaces.IMapDataManager
+    public interface IDatabaseController : IDisposable, IMapDataSaver, CollectionManager.Interfaces.IMapDataManager
     {
         /// <summary>
         /// Used for querying database with expectation of no result.

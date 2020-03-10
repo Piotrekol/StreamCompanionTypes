@@ -1,8 +1,8 @@
 ﻿using StreamCompanionTypes.DataTypes;
 
-namespace StreamCompanionTypes.Interfaces
+namespace StreamCompanionTypes.Interfaces.Services
 {
-    public interface IMapDataStorer
+    public interface IMapDataSaver
     {
         void StartMassStoring();
         void EndMassStoring();

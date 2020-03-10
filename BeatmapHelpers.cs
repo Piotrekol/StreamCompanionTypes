@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using StreamCompanionTypes.DataTypes;
 using StreamCompanionTypes.Interfaces;
+using StreamCompanionTypes.Interfaces.Services;
 
 namespace StreamCompanionTypes
 {
@@ -19,7 +20,7 @@ namespace StreamCompanionTypes
         }
         private static readonly SettingNames _names = SettingNames.Instance;
 
-        public static string GetFullSongsLocation(ISettingsHandler settings)
+        public static string GetFullSongsLocation(ISettings settings)
         {
             var dir = settings.Get<string>(_names.SongsFolderLocation);
             if (dir == _names.SongsFolderLocation.Default<string>())
@@ -30,12 +31,12 @@ namespace StreamCompanionTypes
             return dir;
         }
 
-        public static string FullOsuFileLocation(this IBeatmap beatmap, ISettingsHandler settings)
+        public static string FullOsuFileLocation(this IBeatmap beatmap, ISettings settings)
         {
             return beatmap.FullOsuFileLocation(GetFullSongsLocation(settings));
         }
 
-        public static bool IsValidBeatmap(this IBeatmap beatmap, ISettingsHandler settings, out string fullFileLocation)
+        public static bool IsValidBeatmap(this IBeatmap beatmap, ISettings settings, out string fullFileLocation)
         {
             fullFileLocation = beatmap.FullOsuFileLocation(settings);
 

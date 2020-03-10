@@ -3,7 +3,7 @@ using StreamCompanionTypes.DataTypes;
 
 namespace StreamCompanionTypes.Interfaces
 {
-    public interface IFirstRunUserControl
+    public interface IFirstRunControl
     {
         event EventHandler<FirstRunCompletedEventArgs> Completed;
     }

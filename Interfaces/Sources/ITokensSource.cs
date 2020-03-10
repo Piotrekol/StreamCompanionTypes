@@ -1,8 +1,8 @@
 ﻿using StreamCompanionTypes.DataTypes;
 
-namespace StreamCompanionTypes.Interfaces
+namespace StreamCompanionTypes.Interfaces.Sources
 {
-    public interface ITokensProvider
+    public interface ITokensSource
     {
         /// <summary>
         /// Tokens should get updated upon calling this method<para/>

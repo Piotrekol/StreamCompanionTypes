@@ -1,9 +1,14 @@
 ﻿using System;
 using CollectionManager.Enums;
 using StreamCompanionTypes.Enums;
+using StreamCompanionTypes.Interfaces;
+using StreamCompanionTypes.Interfaces.Sources;
 
 namespace StreamCompanionTypes.DataTypes
 {
+    /// <summary>
+    /// Search arguments used by <see cref="IOsuEventSource"/>s to initiate new events
+    /// </summary>
     public class MapSearchArgs : EventArgs
     {
         public string Artist { get; set; } = "";

@@ -1,6 +1,6 @@
 ﻿using StreamCompanionTypes.Enums;
 
-namespace StreamCompanionTypes.Interfaces
+namespace StreamCompanionTypes.Interfaces.Services
 {
     public interface ILogger
     {

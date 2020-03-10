@@ -4,8 +4,8 @@ using StreamCompanionTypes.Enums;
 
 namespace StreamCompanionTypes.Interfaces
 {
-    public interface IMapDataParser
+    public interface IOutputPatternGenerator
     {
-        List<IOutputPattern> GetFormatedPatterns(Tokens replacements,OsuStatus status);
+        List<IOutputPattern> GetOutputPatterns(Tokens tokens, OsuStatus status);
     }
 }

@@ -2,19 +2,19 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net471</TargetFrameworks>
     <AssemblyTitle>StreamCompanionTypes</AssemblyTitle>
-    <Product>osu!StreamCompanion</Product>
-    <Copyright>Copyright © 2019</Copyright>
+    <Product>StreamCompanion</Product>
+    <Copyright>Copyright © 2020</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Piotrekol</Authors>
     <Company />
-    <PackageId>osuStreamCompanionTypes</PackageId>
-    <Description>Provides types needed for writing plugins for osu!StreamCompanion https://github.com/Piotrekol/StreamCompanion</Description>
+    <PackageId>StreamCompanionTypes</PackageId>
+    <Description>Provides types needed for writing plugins for StreamCompanion https://github.com/Piotrekol/StreamCompanion</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Piotrekol/StreamCompanionTypes</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Piotrekol/StreamCompanionTypes</RepositoryUrl>
     <title>osu!StreamCompanionTypes</title>
     <summary>Provides types needed for writing plugins for osu!StreamCompanion</summary>
-    <Version>2.0.0</Version>
+    <Version>3.0.0</Version>
     <IncludeSymbols>true</IncludeSymbols> 
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>

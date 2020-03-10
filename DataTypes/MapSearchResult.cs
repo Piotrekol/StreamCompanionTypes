@@ -4,6 +4,9 @@ using StreamCompanionTypes.Enums;
 
 namespace StreamCompanionTypes.DataTypes
 {
+    /// <summary>
+    /// Event search results containing relevant event data (beatmap, current mods, playmode...)
+    /// </summary>
     public class MapSearchResult
     {
         private readonly MapSearchArgs _searchArgs;
