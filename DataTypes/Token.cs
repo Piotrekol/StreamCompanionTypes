@@ -1,8 +1,10 @@
 ﻿using StreamCompanionTypes.Enums;
 using System;
+using System.Collections;
 using System.Data;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 
 namespace StreamCompanionTypes.DataTypes
 {
@@ -97,7 +99,11 @@ namespace StreamCompanionTypes.DataTypes
             var result = "INVALID FORMAT";
             try
             {
-                result = string.Format(formatProvider, format, args);
+                if (args[0] is IEnumerable enumerableArg)
+                    result = string.Join(format, enumerableArg.Cast<object>());
+                else
+                    result = string.Format(formatProvider, format, args);
+
                 valid = true;
             }
             catch (FormatException)
