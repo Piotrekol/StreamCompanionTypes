@@ -1,7 +1,8 @@
-﻿using StreamCompanionTypes.Enums;
+using StreamCompanionTypes.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace StreamCompanionTypes.DataTypes
 {
@@ -16,6 +17,13 @@ namespace StreamCompanionTypes.DataTypes
         }
 
         public string GroupName { get; set; }
+
+        internal IDictionary<string, double> NumericTokens => this.Where(kv =>
+        {
+            var value = kv.Value.Value;
+            return value is sbyte || value is byte || value is short || value is ushort || value is int || value is uint
+                   || value is long || value is ulong || value is float || value is double || value is decimal;
+        }).ToDictionary(k => k.Key, v => Convert.ToDouble(v.Value.Value));
 
         /// <summary>
         /// Stores all created tokens<para/>

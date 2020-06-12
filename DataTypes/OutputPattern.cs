@@ -64,6 +64,7 @@ namespace StreamCompanionTypes.DataTypes
 
                 _pattern = value;
                 SetMemoryFormat();
+                _compiledFormulas = null;
 
                 OnPropertyChanged(nameof(Pattern));
             }
@@ -157,45 +158,67 @@ namespace StreamCompanionTypes.DataTypes
         }
 
         public string GetFormatedPattern(OsuStatus status = OsuStatus.All)
-            => FormatPattern(Pattern, Replacements, SaveEvent, status);
-
-        public static string FormatPattern(string pattern, Tokens replacements, OsuStatus saveEvent, OsuStatus currentStatus = OsuStatus.All)
         {
-            if (replacements != null && (saveEvent & currentStatus) != 0)
+            if (!CanSave(Pattern, Replacements, SaveEvent, status))
+                return string.Empty;
+
+            if (_compiledFormulas == null)
+                _compiledFormulas = JaceEngine.Instance.CompileFormulas(Pattern);
+
+            return FormatPattern(Pattern, Replacements, _compiledFormulas);
+        }
+
+        private Dictionary<string, (string format, Func<IDictionary<string, double>, double> Func)> _compiledFormulas;
+
+        public static bool CanSave(string pattern, Tokens tokens, OsuStatus saveEvent,
+            OsuStatus currentStatus = OsuStatus.All)
+        {
+            if (tokens == null || (saveEvent & currentStatus) == 0 || string.IsNullOrWhiteSpace(pattern))
+                return false;
+
+            foreach (var r in tokens)
             {
-                if (string.IsNullOrWhiteSpace(pattern))
-                    return string.Empty;
-
-                var toFormat = pattern;
-                foreach (var r in replacements)
+                if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(pattern, $"!{r.Key}!",
+                    CompareOptions.IgnoreCase) >= 0)
                 {
-                    if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(toFormat, $"!{r.Key}!",CompareOptions.IgnoreCase) >=0)
-                    {
-                        if (!r.Value.CanSave(currentStatus))
-                            return string.Empty;
-                    }
+                    if (!r.Value.CanSave(currentStatus))
+                        return false;
                 }
-
-                foreach (var r in replacements)
-                {
-                    string replacement;
-                    if (r.Value.Value is null)
-                    {
-                        replacement = "";
-                    }
-                    else
-                    {
-                        replacement = r.Value.FormatedValue;
-                    }
-
-                    toFormat = toFormat.Replace($"!{r.Key}!", replacement,
-                        StringComparison.InvariantCultureIgnoreCase);
-                }
-
-                return toFormat;
             }
 
-            return string.Empty;
+            return true;
+        }
+
+        public static string FormatPattern(string pattern, Tokens tokens, OsuStatus saveEvent,
+            OsuStatus currentStatus = OsuStatus.All)
+        {
+            return CanSave(pattern, tokens, saveEvent, currentStatus) 
+                ? FormatPattern(pattern, tokens, null) 
+                : string.Empty;
+        }
+        public static string FormatPattern(string pattern, Tokens tokens, 
+            Dictionary<string, (string format, Func<IDictionary<string, double>, double> Func)> compiledFormulas)
+        {
+            if (compiledFormulas != null)
+                pattern = JaceEngine.Instance.FormatFormulas(pattern, compiledFormulas, tokens.NumericTokens);
+
+            foreach (var r in tokens)
+            {
+                string replacement;
+                if (r.Value.Value is null)
+                {
+                    replacement = "";
+                }
+                else
+                {
+                    replacement = r.Value.FormatedValue;
+                }
+
+                pattern = pattern.Replace($"!{r.Key}!", replacement,
+                    StringComparison.InvariantCultureIgnoreCase);
+            }
+
+            return pattern;
         }
 
         internal static void AddLiveToken(string tokenName)
