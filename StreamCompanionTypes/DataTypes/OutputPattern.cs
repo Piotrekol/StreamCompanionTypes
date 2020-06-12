@@ -33,6 +33,10 @@ namespace StreamCompanionTypes.DataTypes
         [IgnoreDataMember]
         public ReadOnlyObservableCollection<string> MemoryFormatTokens => ReadOnlyLiveTokenNames;
 
+        [IgnoreDataMember]
+        private Dictionary<string, (string Format, IEnumerable<string> TokensUsed, Func<IDictionary<string, double>, double> Func)> _compiledFormulas;
+
+
         [DisplayName("Name")]
         [JsonProperty(PropertyName = "Name")]
         public string Name
@@ -136,10 +140,17 @@ namespace StreamCompanionTypes.DataTypes
             }
         }
 
+        private bool _isMemoryFormat;
+        private bool _usesLiveTokenInFormula;
+
         [Browsable(false)]
         [IgnoreDataMember]
         [DisplayName("Memory format")]
-        public bool IsMemoryFormat { get; private set; }
+        public bool IsMemoryFormat
+        {
+            get => _isMemoryFormat || _usesLiveTokenInFormula;
+            private set => _isMemoryFormat = value;
+        }
 
         public OutputPattern()
         {
@@ -163,12 +174,14 @@ namespace StreamCompanionTypes.DataTypes
                 return string.Empty;
 
             if (_compiledFormulas == null)
+            {
                 _compiledFormulas = JaceEngine.Instance.CompileFormulas(Pattern);
+                _usesLiveTokenInFormula =
+                    _compiledFormulas.Any(kv => kv.Value.TokensUsed.Any(x => LiveTokenNames.Contains($"!{x}!")));
+            }
 
             return FormatPattern(Pattern, Replacements, _compiledFormulas);
         }
-
-        private Dictionary<string, (string format, Func<IDictionary<string, double>, double> Func)> _compiledFormulas;
 
         public static bool CanSave(string pattern, Tokens tokens, OsuStatus saveEvent,
             OsuStatus currentStatus = OsuStatus.All)
@@ -192,12 +205,13 @@ namespace StreamCompanionTypes.DataTypes
         public static string FormatPattern(string pattern, Tokens tokens, OsuStatus saveEvent,
             OsuStatus currentStatus = OsuStatus.All)
         {
-            return CanSave(pattern, tokens, saveEvent, currentStatus) 
-                ? FormatPattern(pattern, tokens, null) 
+            return CanSave(pattern, tokens, saveEvent, currentStatus)
+                ? FormatPattern(pattern, tokens, null)
                 : string.Empty;
         }
-        public static string FormatPattern(string pattern, Tokens tokens, 
-            Dictionary<string, (string format, Func<IDictionary<string, double>, double> Func)> compiledFormulas)
+
+        public static string FormatPattern(string pattern, Tokens tokens,
+            Dictionary<string, (string Format, IEnumerable<string> TokensUsed, Func<IDictionary<string, double>, double> Func)> compiledFormulas)
         {
             if (compiledFormulas != null)
                 pattern = JaceEngine.Instance.FormatFormulas(pattern, compiledFormulas, tokens.NumericTokens);
