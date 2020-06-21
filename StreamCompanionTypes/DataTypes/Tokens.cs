@@ -54,6 +54,12 @@ namespace StreamCompanionTypes.DataTypes
             }
             else
             {
+                if (tokenName.Length == 0 || !char.IsLetter(tokenName[0]))
+                    throw new Exception($"Token name must start with a letter (got: \"{tokenName}\")");
+
+                if(tokenName.Any(char.IsWhiteSpace))
+                    throw new Exception($"Token name can not contain whitespace characters (got: \"{tokenName}\")");
+
                 token = new Token(value, type, format, defaultValue, whitelist) { PluginName = pluginName };
                 _AllTokens[tokenName] = token;
 
