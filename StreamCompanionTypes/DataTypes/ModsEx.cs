@@ -19,6 +19,7 @@ namespace StreamCompanionTypes.DataTypes
                 _shortMods = value;
                 _filteredShortMods = value
                     .Replace("AU", "")
+                    .Replace("AP", "")
                     .Replace("SV2", "")
                     .Replace("RL", "")
                     .Replace("CO", "DS") //Coop is named Dual Stages in osu!lazer
