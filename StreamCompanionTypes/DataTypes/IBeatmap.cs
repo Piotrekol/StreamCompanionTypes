@@ -43,7 +43,7 @@ namespace StreamCompanionTypes.DataTypes
         float CircleSize { get; set; }
         float HpDrainRate { get; set; }
         float OverallDifficulty { get; set; }
-        double SliderVelocity { get; set; }
+        double? SliderVelocity { get; set; }
         int DrainingTime { get; set; }
         int TotalTime { get; set; }
         int PreviewTime { get; set; }
@@ -55,7 +55,7 @@ namespace StreamCompanionTypes.DataTypes
         OsuGrade CatchGrade { get; set; }
         OsuGrade ManiaGrade { get; set; }
         short Offset { get; set; }
-        float StackLeniency { get; set; }
+        float? StackLeniency { get; set; }
         PlayMode PlayMode { get; set; }
         string Source { get; set; }
         short AudioOffset { get; set; }
