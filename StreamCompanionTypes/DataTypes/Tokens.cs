@@ -60,6 +60,9 @@ namespace StreamCompanionTypes.DataTypes
                 if(tokenName.Any(char.IsWhiteSpace))
                     throw new Exception($"Token name can not contain whitespace characters (got: \"{tokenName}\")");
 
+                if (char.IsLower(tokenName[0]))
+                    throw new Exception($"First token letter must be lowercase (token name ideally should be camelCase) (got: \"{tokenName}\")");
+
                 token = new Token(value, type, format, defaultValue, whitelist) { PluginName = pluginName };
                 _AllTokens[tokenName] = token;
 
