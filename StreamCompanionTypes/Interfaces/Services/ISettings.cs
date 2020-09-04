@@ -6,6 +6,7 @@ namespace StreamCompanionTypes.Interfaces.Services
 {
     public interface ISettings
     {
+        IReadOnlyDictionary<string, object> SettingsEntries { get; }
         EventHandler<SettingUpdated> SettingUpdated { get; set; }
         string FullConfigFilePath { get; }
         T Get<T>(ConfigEntry entry);
