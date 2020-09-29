@@ -19,14 +19,14 @@ namespace StreamCompanionTypes.DataTypes
         public OsuStatus Status { get; set; } = OsuStatus.Null;
         public string SourceName { get; }
         public string MapHash { get; set; }
-        //TODO: enforce explicitly setting event type via ctor
-        public OsuEventType EventType { get; set; } = OsuEventType.MapChange;
+        public OsuEventType EventType { get; set; }
 
         public PlayMode? PlayMode { get; set; } = null;
 
-        public MapSearchArgs(string sourceName)
+        public MapSearchArgs(string sourceName, OsuEventType eventType)
         {
             SourceName = sourceName;
+            EventType = eventType;
         }
     }
 }
