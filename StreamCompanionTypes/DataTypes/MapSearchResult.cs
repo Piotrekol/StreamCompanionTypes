@@ -9,20 +9,20 @@ namespace StreamCompanionTypes.DataTypes
     /// </summary>
     public class MapSearchResult
     {
-        private readonly MapSearchArgs _searchArgs;
+        public readonly MapSearchArgs SearchArgs;
         public List<IBeatmap> BeatmapsFound { get { return _beatmapsFound; } set { } }
         readonly List<IBeatmap> _beatmapsFound = new List<IBeatmap>();
         public List<IOutputPattern> FormatedStrings = new List<IOutputPattern>();
         public bool FoundBeatmaps => _beatmapsFound.Count > 0;
-        public string MapSearchString => _searchArgs.Raw;
+        public string MapSearchString => SearchArgs.Raw;
         public IModsEx Mods = null;
-        public OsuStatus Action => _searchArgs.Status;
-        public PlayMode? PlayMode => _searchArgs.PlayMode;
+        public OsuStatus Action => SearchArgs.Status;
+        public PlayMode? PlayMode => SearchArgs.PlayMode;
         public string EventSource { get; set; }
 
         public MapSearchResult(MapSearchArgs searchArgs)
         {
-            _searchArgs = searchArgs;
+            SearchArgs = searchArgs;
         }
     }
 }
