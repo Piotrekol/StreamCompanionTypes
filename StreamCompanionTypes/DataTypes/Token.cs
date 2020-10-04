@@ -21,37 +21,47 @@ namespace StreamCompanionTypes.DataTypes
 
         public virtual bool CanSave(OsuStatus status) => (StatusWhitelist & status) != 0;
 
-        public object Value
+        public virtual object Value
         {
-            get { return RawValue; }
+            get => RawValue;
             set
             {
+                //Allow null and type this token has been initialized with
+                Debug.Assert(RawValue == null || value == null || value.GetType() == RawValue.GetType(), "Attempted changing type of already created token!");
+
                 RawValue = value;
-                if (!FormatIsValid)
-                    return;
-
-                if (RawValue is null)
-                    FormatedValue = "";
-                else
-                {
-                    var formatIsValid = FormatIsValid;
-                    FormatedValue = string.IsNullOrEmpty(Format)
-                        ? RawValue.ToString()
-                        : TryFormat(CultureInfo.InvariantCulture, Format, out formatIsValid, RawValue);
-
-                    if (FormatedValue.StartsWith("Eval:"))
-                    {
-                        var result = Evaluate(FormatedValue.Substring(5, FormatedValue.Length - 5));
-                        FormatedValue = result.ToString(CultureInfo.InvariantCulture);
-                    }
-
-                    FormatIsValid = formatIsValid;
-                }
+                _formattedValueCreated = false;
             }
         }
 
-        private readonly object _defaultValue;
+        protected string FormatTokenValue(object value)
+        {
+            string formattedValue;
+            if (value is null)
+                formattedValue = "";
+            else
+            {
+                var formatIsValid = FormatIsValid;
+                formattedValue = string.IsNullOrEmpty(Format)
+                    ? value.ToString()
+                    : TryFormat(CultureInfo.InvariantCulture, Format, out formatIsValid, value);
+
+                if (formattedValue.StartsWith("Eval:"))
+                {
+                    var result = Evaluate(formattedValue.Substring(5, formattedValue.Length - 5));
+                    formattedValue = result.ToString(CultureInfo.InvariantCulture);
+                }
+
+                FormatIsValid = formatIsValid;
+            }
+
+            return formattedValue;
+        }
+
+        protected object DefaultValue { get; private set; }
         private string _format;
+        private string _formatedValue;
+        private bool _formattedValueCreated;
 
         public string Format
         {
@@ -60,11 +70,24 @@ namespace StreamCompanionTypes.DataTypes
             {
                 _format = value;
                 FormatIsValid = true;
-                Value = Value;
+                Value = RawValue;
             }
         }
 
-        public string FormatedValue { get; set; }
+        public string FormatedValue
+        {
+            get
+            {
+                if (!FormatIsValid)
+                    return string.Empty;
+
+                if (!_formattedValueCreated)
+                    _formatedValue = FormatTokenValue(Value);
+
+                return _formatedValue;
+            }
+            set => _formatedValue = value;
+        }
 
         /// <summary>
         /// Name of the plugin that created this token
@@ -76,16 +99,16 @@ namespace StreamCompanionTypes.DataTypes
         {
             Debug.Assert(!(value is IToken));
 
-            Format = format;
+            _format = format;
             StatusWhitelist = whitelist;
-            _defaultValue = defaultValue;
+            DefaultValue = defaultValue;
             Type = type;
-            Value = value;
+            RawValue = value;
         }
 
         public void Reset()
         {
-            Value = _defaultValue;
+            Value = DefaultValue;
         }
 
         public IToken Clone()

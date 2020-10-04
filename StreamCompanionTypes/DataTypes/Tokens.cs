@@ -29,7 +29,7 @@ namespace StreamCompanionTypes.DataTypes
         /// Stores all created tokens<para/>
         /// </summary>
         private static Dictionary<string, IToken> _AllTokens { get; set; } = new Dictionary<string, IToken>();
-        
+
         /// <summary>
         /// <inheritdoc cref="_AllTokens"/>
         /// </summary>
@@ -57,13 +57,24 @@ namespace StreamCompanionTypes.DataTypes
                 if (tokenName.Length == 0 || !char.IsLetter(tokenName[0]))
                     throw new Exception($"Token name must start with a letter (got: \"{tokenName}\")");
 
-                if(tokenName.Any(char.IsWhiteSpace))
+                if (tokenName.Any(char.IsWhiteSpace))
                     throw new Exception($"Token name can not contain whitespace characters (got: \"{tokenName}\")");
 
                 if (!char.IsLower(tokenName[0]))
                     throw new Exception($"First token letter must be lowercase (token name ideally should be camelCase) (got: \"{tokenName}\")");
 
-                token = new Token(value, type, format, defaultValue, whitelist) { PluginName = pluginName };
+                bool isLazy = false;
+                if (value != null)
+                {
+                    var valueType = value.GetType();
+                    isLazy = valueType.IsGenericType && valueType.GetGenericTypeDefinition() == typeof(Lazy<>);
+                }
+
+                token = isLazy 
+                    ? new LazyToken<object>((Lazy<object>)value, type, format, defaultValue, whitelist) 
+                    : new Token(value, type, format, defaultValue, whitelist);
+                token.PluginName = pluginName;
+
                 _AllTokens[tokenName] = token;
 
                 if ((type & TokenType.Live) != 0)
