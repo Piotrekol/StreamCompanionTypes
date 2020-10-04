@@ -1,4 +1,6 @@
-﻿using StreamCompanionTypes.DataTypes;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using StreamCompanionTypes.DataTypes;
 
 namespace StreamCompanionTypes.Interfaces.Sources
 {
@@ -9,6 +11,7 @@ namespace StreamCompanionTypes.Interfaces.Sources
         /// Use static <see cref="Tokens.CreateTokenSetter"/> to create method for generating and updating tokens
         /// </summary>
         /// <param name="map"></param>
-        void CreateTokens(MapSearchResult map);
+        /// <param name="cancellationToken"></param>
+        Task CreateTokensAsync(IMapSearchResult map, CancellationToken cancellationToken);
     }
 }
