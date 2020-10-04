@@ -86,6 +86,11 @@ namespace StreamCompanionTypes.DataTypes
             return token;
         }
 
+        /// <summary>
+        /// Create factory function for creating and updating of <see cref="IToken"/>s
+        /// </summary>
+        /// <param name="pluginName"></param>
+        /// <returns></returns>
         public static TokenSetter CreateTokenSetter(string pluginName)
         {
             return (tokenName, value, type, format, defaultValue, whitelist) => SetToken(pluginName, tokenName, value, type, format, defaultValue, whitelist);

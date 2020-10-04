@@ -1,15 +1,28 @@
 ﻿using System;
 using CollectionManager.Enums;
 using StreamCompanionTypes.Enums;
-using StreamCompanionTypes.Interfaces;
 using StreamCompanionTypes.Interfaces.Sources;
 
 namespace StreamCompanionTypes.DataTypes
 {
+    public interface IMapSearchArgs
+    {
+        string Artist { get; set; }
+        string Title { get; set; }
+        string Diff { get; set; }
+        string Raw { get; set; }
+        int MapId { get; set; }
+        OsuStatus Status { get; set; }
+        string SourceName { get; }
+        string MapHash { get; set; }
+        OsuEventType EventType { get; set; }
+        PlayMode? PlayMode { get; set; }
+    }
+
     /// <summary>
     /// Search arguments used by <see cref="IOsuEventSource"/>s to initiate new events
     /// </summary>
-    public class MapSearchArgs : EventArgs
+    public class MapSearchArgs : EventArgs, IMapSearchArgs
     {
         public string Artist { get; set; } = "";
         public string Title { get; set; } = "";
