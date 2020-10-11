@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net471</TargetFrameworks>
     <AssemblyTitle>StreamCompanionTypes</AssemblyTitle>
@@ -14,7 +14,7 @@
     <RepositoryUrl>https://github.com/Piotrekol/StreamCompanionTypes</RepositoryUrl>
     <title>osu!StreamCompanionTypes</title>
     <summary>Provides types needed for writing plugins for osu!StreamCompanion</summary>
-    <Version>5.0.0</Version>
+    <Version>5.1.0</Version>
     <IncludeSymbols>true</IncludeSymbols> 
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>

@@ -18,6 +18,7 @@ namespace StreamCompanionTypes.DataTypes
         OsuStatus Action { get; }
         PlayMode? PlayMode { get; }
         string MapSource { get; set; }
+        IModsEx Mods { get; set; }
     }
 
     /// <summary>
@@ -28,7 +29,7 @@ namespace StreamCompanionTypes.DataTypes
         public IMapSearchArgs SearchArgs { get; }
         public List<IBeatmap> BeatmapsFound { get; } = new List<IBeatmap>();
         public List<IOutputPattern> OutputPatterns { get; } = new List<IOutputPattern>();
-        public IModsEx Mods = null;
+        public IModsEx Mods { get; set; }
 
         public string MapSearchString => SearchArgs.Raw;
         public OsuStatus Action => SearchArgs.Status;
