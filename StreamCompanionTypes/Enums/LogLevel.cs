@@ -2,10 +2,13 @@
 
 namespace StreamCompanionTypes.Enums
 {
-    [Flags]
     public enum LogLevel
     {
-        Disabled = 0, Basic = 1, Advanced = 2, Debug = 3, Error = 4
+        Trace = 0,
+        Debug = 1,
+        Information = 2,
+        Warning = 3,
+        Error = 4,
+        Critical = 5
     }
-
 }
