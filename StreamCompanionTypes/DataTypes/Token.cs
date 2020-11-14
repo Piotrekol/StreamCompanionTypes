@@ -12,7 +12,7 @@ namespace StreamCompanionTypes.DataTypes
     {
         public TokenType Type { get; set; }
         private object RawValue { get; set; }
-        public bool FormatIsValid { get; private set; }
+        public bool FormatIsValid { get; private set; } = true;
 
         /// <summary>
         /// in what <see cref="OsuStatus"/>es this token can be saved in
