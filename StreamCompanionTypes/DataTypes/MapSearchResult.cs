@@ -13,6 +13,7 @@ namespace StreamCompanionTypes.DataTypes
     {
         IMapSearchArgs SearchArgs { get; }
         List<IBeatmap> BeatmapsFound { get; }
+        List<object> SharedObjects { get; }
         List<IOutputPattern> OutputPatterns { get; }
         string MapSearchString { get; }
         OsuStatus Action { get; }
@@ -28,6 +29,7 @@ namespace StreamCompanionTypes.DataTypes
     {
         public IMapSearchArgs SearchArgs { get; }
         public List<IBeatmap> BeatmapsFound { get; } = new List<IBeatmap>();
+        public List<object> SharedObjects { get; } = new List<object>();
         public List<IOutputPattern> OutputPatterns { get; } = new List<IOutputPattern>();
         public IModsEx Mods { get; set; }
 
