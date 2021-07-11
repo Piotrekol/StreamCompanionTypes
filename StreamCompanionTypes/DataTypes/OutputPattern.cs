@@ -36,6 +36,9 @@ namespace StreamCompanionTypes.DataTypes
         [IgnoreDataMember]
         private Dictionary<string, (string Format, IEnumerable<string> TokensUsed, Func<IDictionary<string, double>, double> Func)> _compiledFormulas;
 
+        [Editable(false)]
+        [IgnoreDataMember]
+        public readonly Tokens UsedTokens = new Tokens();
 
         [DisplayName("Name")]
         [JsonProperty(PropertyName = "Name")]
@@ -69,8 +72,17 @@ namespace StreamCompanionTypes.DataTypes
                 _pattern = value;
                 SetMemoryFormat();
                 _compiledFormulas = null;
-
+                SetUsedTokens();
                 OnPropertyChanged(nameof(Pattern));
+            }
+        }
+
+        private void SetUsedTokens()
+        {
+            UsedTokens.Clear();
+            foreach (var usedTokens in Tokens.AllTokens.Where(t => _pattern.ToLower().Contains(t.Key)))
+            {
+                UsedTokens.Add(usedTokens.Key, usedTokens.Value);
             }
         }
 
@@ -180,7 +192,7 @@ namespace StreamCompanionTypes.DataTypes
                     _compiledFormulas.Any(kv => kv.Value.TokensUsed.Any(x => LiveTokenNames.Contains($"!{x}!")));
             }
 
-            return FormatPattern(Pattern, Replacements, _compiledFormulas);
+            return FormatPattern(Pattern, UsedTokens, _compiledFormulas);
         }
 
         public static bool CanSave(string pattern, Tokens tokens, OsuStatus saveEvent,
