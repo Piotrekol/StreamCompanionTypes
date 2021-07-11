@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
@@ -80,7 +81,7 @@ namespace StreamCompanionTypes.DataTypes
         private void SetUsedTokens()
         {
             UsedTokens.Clear();
-            foreach (var usedTokens in Tokens.AllTokens.Where(t => _pattern.ToLower().Contains(t.Key)))
+            foreach (var usedTokens in Tokens.AllTokens.Where(t => _pattern.Contains(t.Key)))
             {
                 UsedTokens.Add(usedTokens.Key, usedTokens.Value);
             }
@@ -166,7 +167,14 @@ namespace StreamCompanionTypes.DataTypes
 
         public OutputPattern()
         {
-            LiveTokenNames.CollectionChanged += (_, __) => SetMemoryFormat();
+            LiveTokenNames.CollectionChanged += LiveTokenNamesOnCollectionChanged;
+            Tokens.AllTokensChanged += (_, __) => SetUsedTokens();
+        }
+
+        private void LiveTokenNamesOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            SetMemoryFormat();
+            SetUsedTokens();
         }
 
         public object Clone()
