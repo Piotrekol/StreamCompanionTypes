@@ -81,7 +81,7 @@ namespace StreamCompanionTypes.DataTypes
         private void SetUsedTokens()
         {
             UsedTokens.Clear();
-            foreach (var usedTokens in Tokens.AllTokens.Where(t => _pattern.Contains(t.Key)))
+            foreach (var usedTokens in Tokens.AllTokens.Where(t => _pattern.ToLowerInvariant().Contains(t.Key.ToLowerInvariant())))
             {
                 UsedTokens.Add(usedTokens.Key, usedTokens.Value);
             }
