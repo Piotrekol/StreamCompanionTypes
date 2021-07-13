@@ -13,14 +13,14 @@ namespace StreamCompanionTypes.DataTypes
             Lazy = value ?? new Lazy<T>(() => defaultValue);
         }
 
+        public bool IsValueCreated => Lazy.IsValueCreated;
         public override object Value
         {
             get => Lazy.Value;
             set
             {
-                base.Value = value;
                 Debug.Assert(value.GetType().IsGenericType && value.GetType().GetGenericTypeDefinition() == typeof(Lazy<>), "Cannot set plain value in LazyToken");
-                Lazy = (Lazy<T>)value;
+                base.Value = Lazy = (Lazy<T>)value;
             }
         }
     }
