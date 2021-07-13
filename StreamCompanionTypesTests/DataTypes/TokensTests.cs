@@ -7,7 +7,7 @@ namespace StreamCompanionTypes.DataTypes.Tests
     {
         private Tokens.TokenSetter _tokenSetter;
         private static int _tokenNumber;
-        private static string TokenName() => $"token_{_tokenNumber++}";
+        private static string TokenName() => $"token_{nameof(TokensTests)}_{_tokenNumber++}";
         [SetUp]
         public void Initialize()
         {
