@@ -190,7 +190,7 @@ namespace StreamCompanionTypes.DataTypes
 
         public string GetFormatedPattern(OsuStatus status = OsuStatus.All)
         {
-            if (!CanSave(Pattern, Replacements, SaveEvent, status))
+            if (!CanSave(Pattern, UsedTokens, SaveEvent, status))
                 return string.Empty;
 
             if (_compiledFormulas == null)
@@ -211,12 +211,8 @@ namespace StreamCompanionTypes.DataTypes
 
             foreach (var r in tokens)
             {
-                if (CultureInfo.InvariantCulture.CompareInfo.IndexOf(pattern, $"!{r.Key}!",
-                    CompareOptions.IgnoreCase) >= 0)
-                {
-                    if (!r.Value.CanSave(currentStatus))
-                        return false;
-                }
+                if (!r.Value.CanSave(currentStatus))
+                    return false;
             }
 
             return true;
