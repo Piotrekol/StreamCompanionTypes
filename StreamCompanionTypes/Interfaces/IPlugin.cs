@@ -11,6 +11,5 @@
         string Name { get; }
         string Author { get; }
         string Url { get; }
-        string UpdateUrl { get; }
     }
 }

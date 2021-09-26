@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace StreamCompanionTypes.Interfaces
+namespace StreamCompanionTypes.Interfaces.Services
 {
     public interface IMainWindowModel : INotifyPropertyChanged
     {

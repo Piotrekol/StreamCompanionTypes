@@ -3,7 +3,7 @@
     <TargetFrameworks>netstandard2.1</TargetFrameworks>
     <AssemblyTitle>StreamCompanionTypes</AssemblyTitle>
     <Product>StreamCompanion</Product>
-    <Copyright>Copyright © 2020</Copyright>
+    <Copyright>Copyright © 2020-present</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Piotrekol</Authors>
     <Company />
@@ -14,7 +14,7 @@
     <RepositoryUrl>https://github.com/Piotrekol/StreamCompanionTypes</RepositoryUrl>
     <title>osu!StreamCompanionTypes</title>
     <summary>Provides types needed for writing plugins for osu!StreamCompanion</summary>
-    <Version>7.2.1</Version>
+    <Version>8.0.0</Version>
     <IncludeSymbols>true</IncludeSymbols> 
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>

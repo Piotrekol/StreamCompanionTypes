@@ -1,4 +1,4 @@
-﻿namespace StreamCompanionTypes.DataTypes
+﻿namespace StreamCompanionTypes.Interfaces.Services
 {
     public class Delegates
     {

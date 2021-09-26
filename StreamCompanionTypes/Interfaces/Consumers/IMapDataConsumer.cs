@@ -1,10 +1,11 @@
 ﻿using System.Threading;
+using System.Threading.Tasks;
 using StreamCompanionTypes.DataTypes;
 
 namespace StreamCompanionTypes.Interfaces.Consumers
 {
     public interface IMapDataConsumer
     {
-        void SetNewMap(IMapSearchResult map, CancellationToken cancellationToken);
+        Task SetNewMapAsync(IMapSearchResult map, CancellationToken cancellationToken);
     }
 }
