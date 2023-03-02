@@ -21,7 +21,6 @@ namespace StreamCompanionTypes.DataTypes
             {
                 Debug.Assert(value.GetType().IsGenericType && value.GetType().GetGenericTypeDefinition() == typeof(Lazy<>), "Cannot set plain value in LazyToken");
                 base.Value = Lazy = (Lazy<T>)value;
-                OnValueUpdated();
             }
         }
     }
