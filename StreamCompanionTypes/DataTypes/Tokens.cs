@@ -71,8 +71,8 @@ namespace StreamCompanionTypes.DataTypes
                 }
 
                 token = isLazy 
-                    ? new LazyToken<object>((Lazy<object>)value, type, format, defaultValue, whitelist) 
-                    : new Token(value, type, format, defaultValue, whitelist);
+                    ? new LazyToken<object>(tokenName, (Lazy<object>)value, type, format, defaultValue, whitelist) 
+                    : new Token(tokenName, value, type, format, defaultValue, whitelist);
                 token.PluginName = pluginName;
 
                 _AllTokens[tokenName] = token;

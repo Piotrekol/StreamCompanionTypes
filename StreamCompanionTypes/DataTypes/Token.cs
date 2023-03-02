@@ -10,6 +10,7 @@ namespace StreamCompanionTypes.DataTypes
 {
     public class Token : IToken
     {
+        public string Name { private set; get; }
         public TokenType Type { get; set; }
         private object RawValue { get; set; }
         public bool FormatIsValid { get; private set; } = true;
@@ -31,9 +32,15 @@ namespace StreamCompanionTypes.DataTypes
 
                 RawValue = value;
                 _formattedValueCreated = false;
+                OnValueUpdated();
             }
         }
 
+        public event EventHandler<IToken> ValueUpdated;
+        protected void OnValueUpdated()
+        {
+            ValueUpdated?.Invoke(null, this);
+        }
         protected string FormatTokenValue(object value)
         {
             string formattedValue;
@@ -94,11 +101,12 @@ namespace StreamCompanionTypes.DataTypes
         /// </summary>
         public string PluginName { get; set; }
 
-        internal Token(object value, TokenType type = TokenType.Normal, string format = null,
+        internal Token(string name, object value, TokenType type = TokenType.Normal, string format = null,
             object defaultValue = null, OsuStatus whitelist = OsuStatus.All)
         {
             Debug.Assert(!(value is IToken));
 
+            Name = name;
             _format = format;
             StatusWhitelist = whitelist;
             DefaultValue = defaultValue;

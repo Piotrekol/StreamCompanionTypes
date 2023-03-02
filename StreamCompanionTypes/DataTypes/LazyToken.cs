@@ -8,7 +8,7 @@ namespace StreamCompanionTypes.DataTypes
         where T : class
     {
         protected Lazy<T> Lazy { get; private set; }
-        internal LazyToken(Lazy<T> value, TokenType type = TokenType.Normal, string format = null, T defaultValue = null, OsuStatus whitelist = OsuStatus.All) : base(value, type, format, defaultValue, whitelist)
+        internal LazyToken(string name, Lazy<T> value, TokenType type = TokenType.Normal, string format = null, T defaultValue = null, OsuStatus whitelist = OsuStatus.All) : base(name, value, type, format, defaultValue, whitelist)
         {
             Lazy = value ?? new Lazy<T>(() => defaultValue);
         }
@@ -21,6 +21,7 @@ namespace StreamCompanionTypes.DataTypes
             {
                 Debug.Assert(value.GetType().IsGenericType && value.GetType().GetGenericTypeDefinition() == typeof(Lazy<>), "Cannot set plain value in LazyToken");
                 base.Value = Lazy = (Lazy<T>)value;
+                OnValueUpdated();
             }
         }
     }
