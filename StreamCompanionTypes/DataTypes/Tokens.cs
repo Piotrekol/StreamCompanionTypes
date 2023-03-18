@@ -1,5 +1,6 @@
 using StreamCompanionTypes.Enums;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace StreamCompanionTypes.DataTypes
         /// <summary>
         /// Stores all created tokens<para/>
         /// </summary>
-        private static Dictionary<string, IToken> _AllTokens { get; set; } = new Dictionary<string, IToken>();
+        private static ConcurrentDictionary<string, IToken> _AllTokens { get; set; } = new ConcurrentDictionary<string, IToken>();
 
         /// <summary>
         /// <inheritdoc cref="_AllTokens"/>
