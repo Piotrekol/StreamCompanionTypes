@@ -14,23 +14,15 @@ namespace StreamCompanionTypes
         public readonly ConfigEntry LoadingRawBeatmaps = new ConfigEntry("LoadingRawBeatmaps", false);
         public readonly ConfigEntry LastRunVersion = new ConfigEntry("LastRunVersion", "N/A");
         public readonly ConfigEntry TokenFormats = new ConfigEntry("TokenFormats", "{}");
+        public readonly ConfigEntry FirstRun = new ConfigEntry("firstRun", true);
 
 
 
         //ClickCounter 
-        public readonly ConfigEntry KeyList = new ConfigEntry("keyList", new List<string>());
-        public readonly ConfigEntry KeyNames = new ConfigEntry("keyNames", new List<string>());
-        public readonly ConfigEntry KeyCounts = new ConfigEntry("keyCounts", new List<int>());
-        public readonly ConfigEntry FirstRun = new ConfigEntry("firstRun", true);
-        public readonly ConfigEntry EnableMouseHook = new ConfigEntry("HookMouse", false);
-        public readonly ConfigEntry CfgEnableKpx = new ConfigEntry("EnableKPM", false);
-        public readonly ConfigEntry RightMouseCount = new ConfigEntry("rightMouseCount", 0L);
-        public readonly ConfigEntry LeftMouseCount = new ConfigEntry("leftMouseCount", 0L);
-        public readonly ConfigEntry ResetKeysOnRestart = new ConfigEntry("ResetKeysOnRestart", false);
-        public readonly ConfigEntry DisableClickCounterWrite = new ConfigEntry("DisableClickCounterWrite", false);
+        public readonly ConfigEntry ClickCounter = new ConfigEntry("ClickCounter", null);
 
         //Data parser
-        public readonly ConfigEntry ActualPatterns = new ConfigEntry("ActualPatterns", "");//Json array of OutputPattern
+        public readonly ConfigEntry ActualPatterns = new ConfigEntry("ActualPatterns", null);
         public readonly ConfigEntry DisableDiskPatternWrite = new ConfigEntry("DisableDiskPatternWrite", false);
 
         //memory scanner

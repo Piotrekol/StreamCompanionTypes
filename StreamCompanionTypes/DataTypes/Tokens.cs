@@ -37,7 +37,7 @@ namespace StreamCompanionTypes.DataTypes
         public static ReadOnlyDictionary<string, IToken> AllTokens { get; } = new ReadOnlyDictionary<string, IToken>(_AllTokens);
 
         /// <summary>
-        /// Event fired whenever any of the tokens in <see cref="AllTokens"/> updates, with token name as parameter
+        /// Event fired whenever new token is added to <see cref="AllTokens"/>
         /// </summary>
         public static event EventHandler<string> AllTokensChanged;
 

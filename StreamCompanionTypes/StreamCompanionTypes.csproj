@@ -14,9 +14,10 @@
     <RepositoryUrl>https://github.com/Piotrekol/StreamCompanionTypes</RepositoryUrl>
     <title>osu!StreamCompanionTypes</title>
     <summary>Provides types needed for writing plugins for osu!StreamCompanion</summary>
-    <Version>8.1.2</Version>
+    <Version>9.0.0-b1</Version>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<LangVersion>11.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -30,7 +31,7 @@
   <ItemGroup>
     <PackageReference Include="CollectionManager" Version="1.0.8" />
     <PackageReference Include="Jace" Version="1.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
   </ItemGroup>

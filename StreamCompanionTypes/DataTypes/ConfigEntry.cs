@@ -8,13 +8,13 @@
         public ConfigEntry(string name, object value)
         {
             Name = name;
-            _defaultValue = value;
+            DefaultValue = value;
         }
         public string Name { get; set; }
-        private readonly object _defaultValue;
+        public object DefaultValue { get; set; }
         public T Default<T>()
         {
-            return (T)_defaultValue;
+            return (T)DefaultValue;
         }
     }
 }
