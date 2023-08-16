@@ -17,6 +17,7 @@
     <Version>9.0.0-b2</Version>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<LangVersion>11.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
