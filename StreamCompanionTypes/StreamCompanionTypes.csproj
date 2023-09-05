@@ -1,43 +1,43 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.1</TargetFrameworks>
-    <AssemblyTitle>StreamCompanionTypes</AssemblyTitle>
-    <Product>StreamCompanion</Product>
-    <Copyright>Copyright © 2020-present</Copyright>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Piotrekol</Authors>
-    <Company />
-    <PackageId>StreamCompanionTypes</PackageId>
-    <Description>Provides types needed for writing plugins for StreamCompanion https://github.com/Piotrekol/StreamCompanion</Description>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/Piotrekol/StreamCompanionTypes</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Piotrekol/StreamCompanionTypes</RepositoryUrl>
-    <title>osu!StreamCompanionTypes</title>
-    <summary>Provides types needed for writing plugins for osu!StreamCompanion</summary>
-    <Version>9.0.0-b2</Version>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	<GenerateDocumentationFile>true</GenerateDocumentationFile>
-	<LangVersion>11.0</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <OutputPath>bin\Release\</OutputPath>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="CollectionManager" Version="1.0.8" />
-    <PackageReference Include="Jace" Version="1.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.1</TargetFrameworks>
+		<AssemblyTitle>StreamCompanionTypes</AssemblyTitle>
+		<Product>StreamCompanion</Product>
+		<Copyright>Copyright © 2020-present</Copyright>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>Piotrekol</Authors>
+		<Company />
+		<PackageId>StreamCompanionTypes</PackageId>
+		<Description>Provides types needed for writing plugins for StreamCompanion https://github.com/Piotrekol/StreamCompanion</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/Piotrekol/StreamCompanionTypes</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Piotrekol/StreamCompanionTypes</RepositoryUrl>
+		<title>osu!StreamCompanionTypes</title>
+		<summary>Provides types needed for writing plugins for osu!StreamCompanion</summary>
+		<Version>9.0.0-b3</Version>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<LangVersion>11.0</LangVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DebugType>full</DebugType>
+		<OutputPath>bin\$(Configuration)\</OutputPath>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugType>pdbonly</DebugType>
+		<OutputPath>bin\Release\</OutputPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="CollectionManager" Version="1.0.8" />
+		<PackageReference Include="Jace" Version="1.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+		<PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="System.Data.DataSetExtensions" />
+		<Reference Include="Microsoft.CSharp" />
+	</ItemGroup>
 </Project>
