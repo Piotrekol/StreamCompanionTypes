@@ -1,4 +1,6 @@
-﻿namespace StreamCompanionTypes.Interfaces.Services
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace StreamCompanionTypes.Interfaces.Services
 {
     public class Delegates
     {

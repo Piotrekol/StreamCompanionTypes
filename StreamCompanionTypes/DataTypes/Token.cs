@@ -11,7 +11,7 @@ namespace StreamCompanionTypes.DataTypes
     public class Token : IToken
     {
         public string Name { private set; get; }
-        public TokenType Type { get; set; }
+        public TokenType Type { get; private set; }
         private object RawValue { get; set; }
         public bool FormatIsValid { get; private set; } = true;
 
@@ -65,7 +65,7 @@ namespace StreamCompanionTypes.DataTypes
             return formattedValue;
         }
 
-        protected object DefaultValue { get; private set; }
+        public object DefaultValue { get; private set; }
         private string _format;
         private string _formatedValue;
         private bool _formattedValueCreated;

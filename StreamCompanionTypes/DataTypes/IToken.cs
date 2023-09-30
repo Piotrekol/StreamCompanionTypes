@@ -6,7 +6,7 @@ namespace StreamCompanionTypes.DataTypes
     public interface IToken
     {
         string Name { get; }
-        TokenType Type { get; set; }
+        TokenType Type { get; }
         bool FormatIsValid { get; }
         /// <summary>
         /// in what <see cref="OsuStatus"/>es this token can be saved in
@@ -14,6 +14,7 @@ namespace StreamCompanionTypes.DataTypes
         OsuStatus StatusWhitelist { get; set; }
 
         object Value { get; set; }
+        object DefaultValue { get; }
         event EventHandler<IToken> ValueUpdated;
         string Format { get; set; }
         string FormatedValue { get; set; }

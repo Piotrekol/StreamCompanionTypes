@@ -1,15 +1,14 @@
-﻿namespace StreamCompanionTypes.Interfaces
+﻿using StreamCompanionTypes.Attributes;
+
+namespace StreamCompanionTypes.Interfaces
 {
     /// <summary>
-    /// Defines a class that should get initialized in StreamCompanion <para/>
-    /// All plugins are required to implement <see cref="IPlugin"/> in order to get loaded <para/>
+    /// Marker inferface which defines a class that should get initialized in StreamCompanion <para/>
+    /// Remember to also add [<see cref="SCPluginAttribute"/>()] on your class with required information <para/>
     /// All dependencies defined in plugin class constructor will get injected.
     /// </summary>
-    public interface IPlugin 
+    public interface IPlugin
     {
-        string Description { get; }
-        string Name { get; }
-        string Author { get; }
-        string Url { get; }
+
     }
 }
