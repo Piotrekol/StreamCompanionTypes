@@ -5,6 +5,7 @@ namespace StreamCompanionTypes.Interfaces
     /// <summary>
     /// Basic information about a plugin 
     /// </summary>
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public class SCPluginAttribute : Attribute, IPluginMetadata
     {
         public string Name { get; }

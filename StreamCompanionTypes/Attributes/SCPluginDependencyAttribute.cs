@@ -5,6 +5,7 @@ namespace StreamCompanionTypes.Attributes
     /// <summary>
     /// Require another plugin to be present in order to load
     /// </summary>
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
     public class SCPluginDependencyAttribute : Attribute
     {
         /// <summary>
