@@ -55,14 +55,7 @@ namespace StreamCompanionTypes.DataTypes
             }
             else
             {
-                if (tokenName.Length == 0 || !char.IsLetter(tokenName[0]))
-                    throw new Exception($"Token name must start with a letter (got: \"{tokenName}\")");
-
-                if (tokenName.Any(char.IsWhiteSpace))
-                    throw new Exception($"Token name can not contain whitespace characters (got: \"{tokenName}\")");
-
-                if (!char.IsLower(tokenName[0]))
-                    throw new Exception($"First token letter must be lowercase (token name ideally should be camelCase) (got: \"{tokenName}\")");
+                ValidateTokenName(tokenName);
 
                 bool isLazy = false;
                 if (value != null)
@@ -85,6 +78,39 @@ namespace StreamCompanionTypes.DataTypes
             }
 
             return token;
+        }
+
+        public static DeferredToken CreateDeferredToken(string pluginName, string tokenName, object value,
+            TokenType type = TokenType.Normal, string format = null, object defaultValue = null, OsuStatus whitelist = OsuStatus.All)
+        {
+            if (AllTokens.TryGetValue(tokenName, out var existing) && existing is DeferredToken dt)
+                return dt;
+
+            ValidateTokenName(tokenName);
+            DeferredToken token = new(tokenName, value, type, format, defaultValue, whitelist)
+            {
+                PluginName = pluginName
+            };
+            _AllTokens[tokenName] = token;
+
+            if ((type & TokenType.Live) != 0)
+                OutputPattern.AddLiveToken(tokenName);
+
+            AllTokensChanged?.Invoke(null, tokenName);
+
+            return token;
+        }
+
+        private static void ValidateTokenName(string tokenName)
+        {
+            if (tokenName.Length == 0 || !char.IsLetter(tokenName[0]))
+                throw new Exception($"Token name must start with a letter (got: \"{tokenName}\")");
+
+            if (tokenName.Any(char.IsWhiteSpace))
+                throw new Exception($"Token name can not contain whitespace characters (got: \"{tokenName}\")");
+
+            if (!char.IsLower(tokenName[0]))
+                throw new Exception($"First token letter must be lowercase (token name ideally should be camelCase) (got: \"{tokenName}\")");
         }
 
         /// <summary>

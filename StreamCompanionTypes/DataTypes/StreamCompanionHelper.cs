@@ -1,7 +1,9 @@
 ﻿using System.Drawing;
+using System.Runtime.Versioning;
 
 namespace StreamCompanionTypes.DataTypes
 {
+    [SupportedOSPlatform("windows")]
     public static class StreamCompanionHelper
     {
         public static Bitmap StreamCompanionLogo()
